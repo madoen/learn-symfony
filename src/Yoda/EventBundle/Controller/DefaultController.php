@@ -3,19 +3,20 @@
 namespace Yoda\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        $data = array(
-            'count' => 5,
-            'name' => $name,
-            'quote' => 'test JSON output'
-        );
-        $json = json_encode($data);
+        // $this->container *only* works in a controller.
+        $templating = $this->container->get('templating');
 
-        return new JsonResponse($json);
+        $content = $templating->render(
+            'EventBundle:Default:index.html.twig',
+            array('name' => $name)
+        );
+
+        return new Response($content);
     }
 }
