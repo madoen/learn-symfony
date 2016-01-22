@@ -8,12 +8,11 @@ class DefaultController extends Controller
 {
     public function indexAction($name)
     {
-        // $this->container *only* works in a controller.
-        $templating = $this->container->get('templating');
-
-        return $templating->renderResponse(
+        // Use render method from base controller on controller.php.
+        return $this->render(
             'EventBundle:Default:index.html.twig',
             array('name' => $name)
         );
+        // This done the same way used on 2nd lesson.
     }
 }
