@@ -1,5 +1,15 @@
-<ul>
-{% for i in 1..count %}
-    <li>Hello <strong>{{ name }}</strong>! #{{ i }}</li>
-{% endfor %}
-</ul>
+{# extend the template. #}
+{% extends '::base.html.twig' %}
+
+{# replace title block content. #}
+{% block title name %}
+
+{# replace body block content. #}
+{% block body %}
+    <ul>
+    {% for i in 1..count %}
+        {# use |capitalize filter for name variable. #}
+        <li>Hello <strong>{{ name|capitalize }}</strong>! #{{ i }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
