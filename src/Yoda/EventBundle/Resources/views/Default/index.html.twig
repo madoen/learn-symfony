@@ -1,1 +1,5 @@
-Hello <strong>{{ name }}</strong>!
+<ul>
+{% for i in 1..count %}
+    <li>Hello <strong>{{ name }}</strong>! #{{ i }}</li>
+{% endfor %}
+</ul>
