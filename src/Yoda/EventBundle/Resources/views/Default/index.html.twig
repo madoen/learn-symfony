@@ -12,4 +12,11 @@
         <li>Hello <strong>{{ name|capitalize }}</strong>! #{{ i }}</li>
     {% endfor %}
     </ul>
+
+    <h2>Event Details</h2>
+    {{ event.name }}<br/>
+    {# use |date filter. #}
+    {{ event.time|date('l, Y-m-d h:i:s A') }}<br/>
+    {{ event.location }}<br/>
+    {{ event.details }}
 {% endblock %}
