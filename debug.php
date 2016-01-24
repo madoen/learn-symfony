@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
+use Yoda\EventBundle\Entity\Event;
 
 /**
  * @var Composer\Autoload\ClassLoader $loader
@@ -18,9 +19,14 @@ $container = $kernel->getContainer();
 $container->enterScope('request');
 $container->set('request', $request);
 
-$templating = $container->get('templating');
+// Set the event data.
+$event = new Event();
+$event->setName('Ramdhan\'s surprise birthday party');
+$event->setLocation('Jakarta');
+$event->setTime(new \Datetime('tomorrow noon'));
+$event->setDetails('Ha! Ramdhan HATES surprises!!!!');
 
-echo $templating->render(
-    'EventBundle:Default:index.html.twig',
-    array('name' => 'ramdhan', 'count' => 3)
-);
+// Get doctrice Entity Manager and save the data.
+$em = $container->get('doctrine')->getManager();
+$em->persist($event);
+$em->flush();
