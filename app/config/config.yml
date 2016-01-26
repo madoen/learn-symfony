@@ -35,6 +35,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        admin_skin: "%admin_skin%"
 
 # Doctrine Configuration
 doctrine:
