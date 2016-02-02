@@ -44,6 +44,9 @@ class EventController extends Controller
             $em->persist($event);
             $em->flush();
 
+            $request->getSession()->getFlashbag()
+                ->add('success', 'Your new Event are successfully saved!');
+
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
 
@@ -82,6 +85,9 @@ class EventController extends Controller
             $em->persist($event);
             $em->flush();
 
+            $request->getSession()->getFlashbag()
+                ->add('success', 'The Event are successfully updated!');
+
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
 
@@ -106,6 +112,9 @@ class EventController extends Controller
             $em->remove($event);
             $em->flush();
         }
+
+            $request->getSession()->getFlashbag()
+                ->add('success', 'The Event are successfully deleted!');
 
         return $this->redirectToRoute('event_index');
     }

@@ -5,3 +5,53 @@
 {% block avanzu_logo %}
     <a href="/" class="logo">Learn Symfony</a>
 {% endblock %}
+
+{% block page_content %}
+    {% block messages %}
+        {% if app.session.flashbag.has('danger') %}
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                <ul>
+                    {% for message in app.session.flashbag.get('danger') %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if app.session.flashbag.has('warning') %}
+            <div class="alert alert-warning alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+                <ul>
+                    {% for message in app.session.flashbag.get('warning') %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if app.session.flashbag.has('success') %}
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                <ul>
+                    {% for message in app.session.flashbag.get('success') %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        {% if app.session.flashbag.has('info') %}
+            <div class="alert alert-info alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-info"></i> Information!</h4>
+                <ul>
+                    {% for message in app.session.flashbag.get('info') %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endblock %}
+    {% block content %}{% endblock %}
+{% endblock %}
