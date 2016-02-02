@@ -1,44 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Event</h1>
+{% block title 'Learn Symfony | Event Show' %}
+{% block page_title 'Event' %}
+{% block page_subtitle 'Show' %}
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ event.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ event.name }}</td>
-            </tr>
-            <tr>
-                <th>Time</th>
-                <td>{% if event.time %}{{ event.time|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Location</th>
-                <td>{{ event.location }}</td>
-            </tr>
-            <tr>
-                <th>Details</th>
-                <td>{{ event.details }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('event_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('event_edit', { 'id': event.id }) }}">Edit</a>
-        </li>
-        <li>
+{% block page_content %}
+    <div class="box box-info">
+        <div class="box-header">
+            <i class="fa fa-table" ></i><a href="{{ path('event_index') }}">List</a> |
+            <i class="fa fa-file" ></i>Show |
+            <i class="fa fa-edit" ></i><a href="{{ path('event_edit', { 'id': event.id }) }}">Edit</a>
+        </div>
+        <div class="box-body">
+            <table class="table table-hover">
+                <tr>
+                    <th>Name</th>
+                    <td>{{ event.name }}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>{% if event.time %}{{ event.time|date('l, Y-m-d h:i:s A') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Location</th>
+                    <td>{{ event.location }}</td>
+                </tr>
+                <tr>
+                    <th>Details</th>
+                    <td>{{ event.details }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="box-footer">
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" class="btn btn-danger" value="Delete">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
 {% endblock %}

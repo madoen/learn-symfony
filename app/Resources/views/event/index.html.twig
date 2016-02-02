@@ -1,45 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Event list</h1>
+{% block title 'Learn Symfony | Events List' %}
+{% block page_title 'Events' %}
+{% block page_subtitle 'List' %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Time</th>
-                <th>Location</th>
-                <th>Details</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for event in events %}
-            <tr>
-                <td><a href="{{ path('event_show', { 'id': event.id }) }}">{{ event.id }}</a></td>
-                <td>{{ event.name }}</td>
-                <td>{% if event.time %}{{ event.time|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ event.location }}</td>
-                <td>{{ event.details }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('event_show', { 'id': event.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('event_edit', { 'id': event.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('event_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+{% block page_content %}
+    <div class="box">
+        <div class="box-header">
+            <i class="fa fa-plus-square" ></i><a href="{{ path('event_new') }}">Create event</a>
+        </div>
+        <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+                <tr>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>Details</th>
+                    <th>Actions</th>
+                </tr>
+                {% for event in events %}
+                    <tr>
+                        <td>{{ event.name }}</td>
+                        <td>{% if event.time %}{{ event.time|date('l, Y-m-d h:i:s A') }}{% endif %}</td>
+                        <td>{{ event.location }}</td>
+                        <td>{{ event.details }}</td>
+                        <td>
+                            <a class="btn btn-info btn-xs" href="{{ path('event_show', { 'id': event.id }) }}">show</a>
+                            <a class="btn btn-warning btn-xs" href="{{ path('event_edit', { 'id': event.id }) }}">edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 {% endblock %}

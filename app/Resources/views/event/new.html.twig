@@ -1,16 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Event creation</h1>
+{% block title 'Learn Symfony | Event Create' %}
+{% block page_title 'Event' %}
+{% block page_subtitle 'Create' %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('event_index') }}">Back to the list</a>
-        </li>
-    </ul>
+{% block page_content %}
+    <div class="box box-primary">
+        <div class="box-header">
+            <i class="fa fa-table" ></i><a href="{{ path('event_index') }}">List</a>
+        </div>
+        {{ form_start(form) }}
+            <div class="box-body">
+                <div class="form-group">
+                    {{ form_widget(form) }}
+                </div>
+            </div>
+            <div class="box-footer">
+                <input type="submit" class="btn btn-primary" value="Create" />
+            </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

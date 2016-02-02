@@ -1,21 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Event edit</h1>
+{% block title 'Learn Symfony | Event Edit' %}
+{% block page_title 'Event' %}
+{% block page_subtitle 'Edit' %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('event_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block page_content %}
+    <div class="box box-warning">
+        <div class="box-header">
+            <i class="fa fa-table" ></i><a href="{{ path('event_index') }}">List</a> |
+            <i class="fa fa-file" ></i><a href="{{ path('event_show', { 'id': event.id }) }}">Show</a> |
+            <i class="fa fa-edit" ></i>Edit
+        </div>
+        {{ form_start(edit_form) }}
+            <div class="box-body">
+                {{ form_widget(edit_form) }}
+            </div>
+            <div class="box-footer">
+                <input type="submit" class="btn btn-warning" value="Edit" />
+            </div>
+        {{ form_end(edit_form) }}
+    </div>
 {% endblock %}
